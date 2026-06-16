@@ -14,26 +14,37 @@ export async function POST(req: NextRequest) {
       Stadt: data.city || "",
       Zimmer: `ca. ${data.rooms || "?"}`,
       "OTA-Quote": `${data.otaPercent || "?"}%`,
-      "Zimmerpreis": `${data.avgRate || "?"} EUR`,
+      Zimmerpreis: `${data.avgRate || "?"} EUR`,
       Name: data.contactName || "",
       Position: data.contactPosition || "–",
-      "E-Mail": data.contactEmail || "",
+      "E-Mail-Adresse": data.contactEmail || "",
       Telefon: data.contactPhone || "",
     };
 
     const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
       body: JSON.stringify(payload),
     });
 
-    const result = await res.json();
+    const text = await res.text();
 
-    if (result.success) {
-      return NextResponse.json({ ok: true });
+    try {
+      const result = JSON.parse(text);
+      if (result.success) {
+        return NextResponse.json({ ok: true });
+      }
+      return NextResponse.json({ ok: false, error: result.message || "Fehler" }, { status: 500 });
+    } catch {
+      // Falls Web3Forms kein JSON zurückgibt, prüfe den HTTP Status
+      if (res.ok) {
+        return NextResponse.json({ ok: true });
+      }
+      return NextResponse.json({ ok: false, error: "Web3Forms Antwort ungültig" }, { status: 500 });
     }
-
-    return NextResponse.json({ ok: false, error: result.message || "Fehler" }, { status: 500 });
   } catch (e) {
     return NextResponse.json({ ok: false, error: String(e) }, { status: 500 });
   }
