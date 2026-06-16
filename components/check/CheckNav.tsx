@@ -22,21 +22,26 @@ export default function CheckNav() {
     >
       <div className="max-w-[1200px] mx-auto px-8 md:px-12 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="https://www.reachup-consulting.de/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
+        <a href="https://www.reachup-consulting.de/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
           <Image
             src="/logo-icon.png"
-            alt="ReachUp"
-            width={24}
-            height={24}
+            alt=""
+            width={26}
+            height={26}
             className="object-contain transition-transform duration-300 group-hover:scale-105"
           />
+          {/* REACHUP in brand serif style — matching the original logo */}
           <span
-            className={`font-serif text-[15px] tracking-[0.2em] uppercase transition-all duration-700 ${
+            className={`text-[16px] tracking-[0.22em] uppercase transition-all duration-700 ${
               scrolled ? "text-[var(--color-charcoal)]" : "text-white"
             }`}
-            style={{ fontWeight: 600 }}
+            style={{
+              fontFamily: "'Crimson Text', Georgia, serif",
+              fontWeight: 600,
+              letterSpacing: "0.18em",
+            }}
           >
-            ReachUp
+            REACHUP
           </span>
         </a>
 

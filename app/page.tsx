@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CheckNav from "@/components/check/CheckNav";
 import CheckHero from "@/components/check/CheckHero";
 import CheckForm from "@/components/check/CheckForm";
@@ -21,6 +21,11 @@ export interface CheckData {
 
 export default function Home() {
   const [checkData, setCheckData] = useState<CheckData | null>(null);
+
+  // Immer oben starten
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleCheckComplete = async (data: CheckData) => {
     setCheckData(data);

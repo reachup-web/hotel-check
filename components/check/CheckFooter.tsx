@@ -34,7 +34,7 @@ export default function CheckFooter() {
               Kontakt
             </a>
             <a
-              href="https://www.reachup-consulting.de/#impressum"
+              href="https://www.reachup-consulting.de/reachup/Impressum"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white/50 transition-colors"
@@ -42,7 +42,7 @@ export default function CheckFooter() {
               Impressum
             </a>
             <a
-              href="https://www.reachup-consulting.de/#datenschutz"
+              href="https://www.reachup-consulting.de/reachup/Datenschutz"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white/50 transition-colors"
